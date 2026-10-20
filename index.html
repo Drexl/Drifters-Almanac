@@ -1,0 +1,1369 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta
+      name="description"
+      content="Craft, find gear, and plan equipment in Embers Adrift."
+    />
+    <title>Drifter's Almanac</title>
+    <link id="appFavicon" rel="icon" type="image/png" href="data:," />
+    <script type="module" crossorigin src="./assets/index-Doge1WIR.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/style-CBrVknCc.css">
+    <meta name="embers-build-target" content="web">
+    <meta name="embers-build-version" content="0.1.0">
+    <meta name="embers-input-manifest-sha256" content="f600783c546b314adaf0054341d9763abf29cdf6c26e93f6ba68ead2be48d5c0">
+    <meta name="embers-changelog-sha256" content="9d040045da45bc5c18a971ccbdf0e40e57b70772b367619aec4cc8a7556f2acd">
+  </head>
+  <body>
+    <div class="almanac-shell">
+      <header class="almanac-header">
+        <span class="brand-logo" aria-label="Embers Adrift" role="img"></span>
+        <h1>Drifter's Almanac</h1>
+        <span id="versionBadge" class="version-badge"></span>
+        <nav class="view-tabs" aria-label="Almanac tools">
+          <div class="almanac-tab-group" data-main-group="crafting">
+            <button
+              type="button"
+              class="view-tab almanac-main-tab"
+              data-main-tab="crafting"
+              aria-label="Crafting"
+              title="Crafting"
+              aria-controls="craftingSubtabs"
+              aria-expanded="false"
+              aria-pressed="false"
+            >
+              <span
+                class="almanac-tab-grip"
+                data-shell-icon="group-crafting"
+                aria-hidden="true"
+              ></span>
+              <span class="almanac-main-string"
+                ><span class="almanac-main-label">Crafting</span></span
+              >
+            </button>
+            <div
+              id="craftingSubtabs"
+              class="almanac-subtabs"
+              aria-hidden="true"
+              inert
+            >
+              <div class="almanac-subtab-strip" aria-label="Crafting tools">
+                <button type="button" class="view-tab" data-tab="recipes">
+                  <span class="almanac-child-label">Recipes</span>
+                </button>
+                <button type="button" class="view-tab" data-tab="materials">
+                  <span class="almanac-child-label">Materials</span>
+                </button>
+                <button type="button" class="view-tab" data-tab="finder">
+                  <span class="almanac-child-label">Finder</span>
+                </button>
+                <button type="button" class="view-tab" data-tab="xp-economy">
+                  <span class="almanac-child-label">XP Economy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="almanac-tab-group" data-main-group="equipment">
+            <button
+              type="button"
+              class="view-tab almanac-main-tab"
+              data-main-tab="equipment"
+              aria-label="Equipment"
+              title="Equipment"
+              aria-controls="equipmentSubtabs"
+              aria-expanded="false"
+              aria-pressed="false"
+            >
+              <span
+                class="almanac-tab-grip"
+                data-shell-icon="group-equipment"
+                aria-hidden="true"
+              ></span>
+              <span class="almanac-main-string"
+                ><span class="almanac-main-label">Equipment</span></span
+              >
+            </button>
+            <div
+              id="equipmentSubtabs"
+              class="almanac-subtabs"
+              aria-hidden="true"
+              inert
+            >
+              <div
+                class="almanac-subtab-strip"
+                aria-label="Equipment tools"
+                role="tablist"
+              >
+                <button
+                  type="button"
+                  class="view-tab"
+                  id="sb-tab-loot"
+                  data-work-tab="loot"
+                  role="tab"
+                  aria-controls="sb-pane-loot"
+                >
+                  <span class="almanac-child-label">Loot Browser</span>
+                </button>
+                <button
+                  type="button"
+                  class="view-tab"
+                  id="sb-tab-search"
+                  data-work-tab="search"
+                  role="tab"
+                  aria-controls="sb-pane-search"
+                >
+                  <span class="almanac-child-label">Build Finder</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="almanac-tab-group" data-main-group="combat">
+            <button
+              type="button"
+              class="view-tab almanac-main-tab"
+              data-main-tab="combat"
+              aria-label="Combat"
+              aria-disabled="true"
+              title="Combat: not ready yet"
+              aria-controls="combatSubtabs"
+              aria-expanded="false"
+              aria-pressed="false"
+            >
+              <span
+                class="almanac-tab-grip"
+                data-shell-icon="group-combat"
+                aria-hidden="true"
+              ></span>
+              <span class="almanac-main-string"
+                ><span class="almanac-main-label">Combat</span></span
+              >
+            </button>
+            <div
+              id="combatSubtabs"
+              class="almanac-subtabs"
+              aria-hidden="true"
+              inert
+            >
+              <div
+                class="almanac-subtab-strip"
+                aria-label="Combat tools"
+                role="tablist"
+              >
+                <button
+                  type="button"
+                  class="view-tab"
+                  id="sb-tab-simulator"
+                  data-work-tab="simulator"
+                  role="tab"
+                  aria-controls="sb-pane-simulator"
+                >
+                  <span class="almanac-child-label">Simulator</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <button
+            class="view-tab view-tab-icon"
+            data-settings
+            data-shell-icon="settings"
+            title="Settings"
+            aria-label="Settings"
+          ></button
+          ><button
+            class="view-tab view-tab-icon"
+            data-changelog
+            data-shell-icon="changelog"
+            title="Change Log"
+            aria-label="Change Log"
+          ></button
+          ><a
+            class="view-tab view-tab-icon"
+            href="https://github.com/Drexl/Drifters-Almanac"
+            target="_blank"
+            rel="noopener"
+            data-shell-icon="github"
+            title="GitHub"
+            aria-label="GitHub (opens in a new tab)"
+          ></a
+          ><a
+            class="view-tab view-tab-icon"
+            href="https://ko-fi.com/drexl"
+            target="_blank"
+            rel="noopener"
+            title="Support on Ko-fi"
+            aria-label="Support on Ko-fi (opens in a new tab)"
+            ><img data-kofi-logo alt=""
+          /></a>
+        </nav>
+      </header>
+      <div class="almanac-workspace">
+        <main class="almanac-content">
+          <section class="crafting-tools"><div class="app">
+  <div class="frame">
+    <header>
+      <span class="brand-logo" role="img" aria-label="Embers Adrift"></span>
+      <h1>Drifter's Almanac</h1>
+      <span id="crafting-versionBadge" class="version-badge"></span>
+      <nav class="view-tabs" aria-label="Browser mode">
+        <button class="view-tab active" data-mode="recipes">Recipes</button>
+        <button class="view-tab" data-mode="materials">MATERIALS</button>
+        <button class="view-tab" data-mode="finder">FINDER</button>
+        <button class="view-tab" data-mode="xp-economy">XP ECONOMY</button>
+        <button
+          id="crafting-settingsButton"
+          type="button"
+          class="view-tab view-tab-icon"
+          title="Settings"
+          aria-label="Settings"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-settings"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065"
+            />
+            <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+          </svg>
+        </button>
+        <button
+          id="crafting-changelogButton"
+          type="button"
+          class="view-tab view-tab-icon"
+          title="Change Log"
+          aria-label="Change Log"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-news"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11"
+            />
+            <path d="M8 8l4 0" />
+            <path d="M8 12l4 0" />
+            <path d="M8 16l4 0" />
+          </svg>
+        </button>
+        <a
+          class="view-tab view-tab-icon"
+          href="https://github.com/Drexl/Drifters-Almanac"
+          target="_blank"
+          rel="noopener"
+          title="View on GitHub"
+          aria-label="View on GitHub, opens in a new tab"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+            />
+          </svg>
+        </a>
+        <a
+          class="view-tab view-tab-icon"
+          href="https://ko-fi.com/drexl"
+          target="_blank"
+          rel="noopener"
+          title="Support on Ko-fi"
+          aria-label="Support on Ko-fi, opens in a new tab"
+        >
+          <img id="crafting-kofiLogo" alt="" />
+        </a>
+      </nav>
+    </header>
+    <main class="layout">
+      <div class="panel-switch" role="group" aria-label="Visible panel">
+        <button
+          type="button"
+          class="active"
+          data-panel-view="browser"
+          aria-pressed="true"
+        >
+          Browse
+        </button>
+        <button type="button" data-panel-view="detail" aria-pressed="false">
+          Details
+        </button>
+      </div>
+      <aside class="browser">
+        <div class="search-wrap">
+          <div class="search-row search-row-top">
+            <div class="search-box" id="crafting-searchBox">
+              <div class="search-box-scroll">
+                <span class="search-chips" id="crafting-searchChips"></span>
+                <input
+                  id="crafting-search"
+                  class="search-input"
+                  type="text"
+                  placeholder="Filter by name or…"
+                  autocomplete="off"
+                  aria-label="Filter recipes"
+                  role="combobox"
+                  aria-autocomplete="list"
+                  aria-controls="crafting-searchComboMenu"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                />
+                <button
+                  type="button"
+                  id="crafting-searchClear"
+                  class="search-clear"
+                  aria-label="Clear search"
+                  hidden
+                >
+                  ×
+                </button>
+              </div>
+              <button
+                type="button"
+                id="crafting-searchComboToggle"
+                class="search-combo-toggle"
+                aria-label="Browse all filters"
+                tabindex="-1"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="icon icon-tabler icons-tabler-filled icon-tabler-caret-down"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6l-.083 -.094l-.054 -.077l-.054 -.096l-.017 -.036l-.027 -.067l-.032 -.108l-.01 -.053l-.01 -.06l-.004 -.057v-.118l.005 -.058l.009 -.06l.01 -.052l.032 -.108l.027 -.067l.07 -.132l.065 -.09l.073 -.081l.094 -.083l.077 -.054l.096 -.054l.036 -.017l.067 -.027l.108 -.032l.053 -.01l.06 -.01l.057 -.004l12.059 -.002z"
+                  />
+                </svg>
+              </button>
+              <div
+                id="crafting-searchComboMenu"
+                class="combo-menu"
+                role="listbox"
+                hidden
+              ></div>
+            </div>
+            <button
+              id="crafting-searchHelp"
+              type="button"
+              class="search-help"
+              aria-label="Search / filter help."
+              title="Search / filter help."
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                <path d="M21 21l-6 -6" />
+                <path d="M10 13l0 .01" />
+                <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+              </svg>
+            </button>
+          </div>
+          <div class="search-row search-row-bottom">
+            <div class="list-controls">
+              <div class="sort-select" id="crafting-sortSelect">
+                <button
+                  id="crafting-sortToggle"
+                  type="button"
+                  class="icon-toggle"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                ></button>
+                <div
+                  id="crafting-sortMenu"
+                  class="sort-menu"
+                  role="listbox"
+                  hidden
+                ></div>
+              </div>
+              <button
+                id="crafting-collapseAllToggle"
+                type="button"
+                class="icon-toggle"
+                title="Collapse all"
+                aria-label="Collapse all"
+              ></button>
+              <button
+                id="crafting-materialGroupingToggle"
+                type="button"
+                class="icon-toggle"
+                title="Materials: grouped"
+                aria-label="Materials: grouped - click for a flat list"
+                hidden
+              ></button>
+              <button
+                id="crafting-filterModeToggle"
+                type="button"
+                class="icon-toggle labeled"
+                title="Filters: matching all (AND)"
+                aria-label="Filters: matching all (AND) - click to match any (OR)"
+              ></button>
+              <span class="row-separator" aria-hidden="true"></span>
+              <div class="count">
+                <b id="crafting-visibleCount">0</b> <span id="crafting-countLabel">recipes</span>
+              </div>
+            </div>
+            <div class="level-filter">
+              <span>Level:</span>
+              <span class="range-number-pair">
+                <input
+                  id="crafting-levelMinNumber"
+                  class="range-number-input"
+                  type="number"
+                  min="1"
+                  max="50"
+                  step="1"
+                  value="1"
+                  data-level-bound="min"
+                  aria-label="Minimum crafting level"
+                  title="Scroll to adjust"
+                />
+                <span aria-hidden="true">–</span>
+                <input
+                  id="crafting-levelMaxNumber"
+                  class="range-number-input"
+                  type="number"
+                  min="1"
+                  max="50"
+                  step="1"
+                  value="50"
+                  data-level-bound="max"
+                  aria-label="Maximum crafting level"
+                  title="Scroll to adjust"
+                />
+              </span>
+              <div class="level-range">
+                <span class="level-range-track" aria-hidden="true"></span>
+                <span
+                  id="crafting-levelRangeFill"
+                  class="level-range-fill"
+                  aria-hidden="true"
+                ></span>
+                <input
+                  id="crafting-levelMin"
+                  class="level-range-input"
+                  type="range"
+                  min="1"
+                  max="50"
+                  value="1"
+                  data-level-bound="min"
+                  aria-label="Minimum crafting level"
+                />
+                <input
+                  id="crafting-levelMax"
+                  class="level-range-input"
+                  type="range"
+                  min="1"
+                  max="50"
+                  value="50"
+                  data-level-bound="max"
+                  aria-label="Maximum crafting level"
+                />
+              </div>
+              <button
+                id="crafting-levelReset"
+                class="level-reset"
+                title="Reset level filter"
+                aria-label="Reset level filter"
+                disabled
+              >
+                <img id="crafting-levelResetIcon" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="crafting-recipeList" class="recipe-list"></div>
+      </aside>
+      <section id="crafting-detail" class="detail"></section>
+    </main>
+  </div>
+</div>
+<div id="crafting-searchHelpModal" class="modal-overlay">
+  <div
+    class="modal-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="crafting-searchHelpTitle"
+  >
+    <div class="modal-head">
+      <h2 id="crafting-searchHelpTitle">Search filters</h2>
+      <button
+        id="crafting-searchHelpClose"
+        type="button"
+        class="modal-close"
+        aria-label="Close"
+      >
+        ×
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>
+        Plain text matches by <b>name</b> only. To refine your search you can
+        add filter chips.
+      </p>
+      <h3>Building a filter</h3>
+      <ol>
+        <li>
+          Start by typing the name of an available filter from the list below.
+          You can press
+          <b>Tab</b> to auto-complete it early.
+        </li>
+        <li>Type the value, e.g. <code>armor</code>.</li>
+        <li>Press <b>Tab</b> to complete the filter chip.</li>
+      </ol>
+      <p>
+        You can also type a whole filter at once, e.g.
+        <code>slot:cuirass</code>, then press Tab.
+      </p>
+      <h3>Combining filters</h3>
+      <p>
+        Add as many filters as you like, including repeated filters of the same
+        kind. The
+        <b>All / Any</b> toggle next to the list controls whether every filter
+        must match or any one does.
+      </p>
+      <h3>Removing a filter</h3>
+      <p>
+        Press <b>Backspace</b> in an empty search box to remove the last filter,
+        or click the × on any chip.
+      </p>
+      <h3>Available filters</h3>
+      <ul id="crafting-searchHelpScopes"></ul>
+    </div>
+  </div>
+</div>
+<div id="crafting-changelogModal" class="modal-overlay">
+  <div
+    class="modal-panel changelog-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="crafting-changelogTitle"
+  >
+    <div class="modal-head">
+      <h2 id="crafting-changelogTitle">Change Log</h2>
+      <button
+        id="crafting-changelogClose"
+        type="button"
+        class="modal-close"
+        aria-label="Close"
+      >
+        ×
+      </button>
+    </div>
+    <div id="crafting-changelogContent" class="modal-body"></div>
+  </div>
+</div>
+<div id="crafting-settingsModal" class="modal-overlay">
+  <div
+    class="modal-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="crafting-settingsTitle"
+  >
+    <div class="modal-head">
+      <h2 id="crafting-settingsTitle">Profession levels</h2>
+      <button
+        id="crafting-settingsClose"
+        type="button"
+        class="modal-close"
+        aria-label="Close"
+      >
+        ×
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>
+        Sets your default profession level across the app. Can be overridden at
+        any time in the recipe browser.
+      </p>
+      <div id="crafting-settingsList"></div>
+      <button
+        type="button"
+        class="icon-license-link"
+        data-help-toggle="iconLicense"
+      >
+        Icon licensing
+      </button>
+      <div
+        class="help-overlay help-overlay--legal"
+        data-help-panel="iconLicense"
+        data-icon-license-content
+      ></div>
+      <button
+        type="button"
+        class="icon-license-link"
+        data-help-toggle="gameArtwork"
+      >
+        Game artwork
+      </button>
+      <div
+        class="help-overlay help-overlay--legal"
+        data-help-panel="gameArtwork"
+      >
+        <p>
+          Most artwork in this app is taken from <i>Embers Adrift</i> and is the
+          copyrighted property of its developer,
+          <a
+            href="https://www.stormhavenstudios.com/#/"
+            target="_blank"
+            rel="noopener"
+            >Stormhaven Studios</a
+          >. It's used here for identification and reference only.
+        </p>
+        <p>
+          This is an unofficial, fan-made tool. It isn't made by, affiliated
+          with, or endorsed by Stormhaven Studios - see the
+          <a
+            href="https://www.embersadrift.com/Team"
+            target="_blank"
+            rel="noopener"
+            >official Embers Adrift team page</a
+          >
+          for the real thing.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="crafting-usageModal" class="modal-overlay">
+  <div
+    class="modal-panel wide"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="crafting-usageModalTitle"
+  >
+    <div class="modal-head">
+      <h2 id="crafting-usageModalTitle">Used in</h2>
+      <button
+        id="crafting-usageModalClose"
+        type="button"
+        class="modal-close"
+        aria-label="Close"
+      >
+        ×
+      </button>
+    </div>
+    <div class="modal-body" id="crafting-usageModalBody"></div>
+  </div>
+</div>
+<div id="crafting-easterEgg" class="easter-egg" aria-hidden="true"><img alt="" /></div>
+</section><section class="combat-tools set-builder-tools" hidden>
+  <div class="app">
+  <div class="frame">
+    <header>
+      <span class="brand-logo" role="img" aria-label="Embers Adrift"></span>
+      <h1>Set Builder</h1>
+      <span id="combat-versionBadge" class="version-badge"></span>
+      <nav class="view-tabs" aria-label="Combat tools">
+        <button type="button" class="view-tab active" data-mode="set-builder">
+          Set Builder
+        </button>
+        <button
+          type="button"
+          class="view-tab"
+          disabled
+          title="Not available yet"
+        >
+          DPS Calculator
+        </button>
+        <button
+          type="button"
+          class="view-tab"
+          disabled
+          title="Not available yet"
+        >
+          Simulator
+        </button>
+        <button
+          id="combat-changelogButton"
+          type="button"
+          class="view-tab view-tab-icon"
+          title="Change Log"
+          aria-label="Change Log"
+          data-icon="changelog"
+        ></button>
+        <button
+          id="combat-aboutButton"
+          type="button"
+          class="view-tab view-tab-icon"
+          title="About"
+          aria-label="About"
+          data-icon="about"
+        ></button>
+      </nav>
+    </header>
+    <main class="layout">
+      <div class="panel-switch" role="group" aria-label="Visible panel">
+        <button
+          type="button"
+          class="active"
+          data-panel-view="browser"
+          aria-pressed="true"
+        >
+          Browse
+        </button>
+        <button type="button" data-panel-view="detail" aria-pressed="false">
+          Build
+        </button>
+      </div>
+      <aside class="browser">
+        <div class="search-wrap">
+          <div class="search-row search-row-top">
+            <div class="search-box" id="combat-searchBox">
+              <div class="search-box-scroll">
+                <span class="search-chips" id="combat-searchChips"></span>
+                <span class="search-input-group">
+                  <input
+                    id="combat-search"
+                    class="search-input"
+                    type="text"
+                    placeholder="Filter by name or…"
+                    autocomplete="off"
+                    aria-label="Filter equipment"
+                    role="combobox"
+                    aria-autocomplete="list"
+                    aria-controls="combat-searchComboMenu"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                  />
+                  <button
+                    type="button"
+                    id="combat-searchClear"
+                    class="search-clear"
+                    aria-label="Clear search"
+                    hidden
+                  >
+                    ×
+                  </button>
+                </span>
+              </div>
+              <button
+                type="button"
+                id="combat-searchComboToggle"
+                class="search-combo-toggle"
+                aria-label="Browse all filters"
+                tabindex="-1"
+                data-icon="combo-toggle"
+              ></button>
+              <div
+                id="combat-searchComboMenu"
+                class="combo-menu"
+                role="listbox"
+                hidden
+              ></div>
+            </div>
+            <button
+              id="combat-searchHelp"
+              type="button"
+              class="search-help"
+              aria-label="Search / filter help."
+              title="Search / filter help."
+              data-icon="search-help"
+            ></button>
+          </div>
+          <div class="search-row search-row-bottom">
+            <div class="list-controls">
+              <div class="sort-select" id="combat-sortSelect">
+                <button
+                  id="combat-sortToggle"
+                  type="button"
+                  class="icon-toggle"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                ></button>
+                <div
+                  id="combat-sortMenu"
+                  class="sort-menu"
+                  role="listbox"
+                  hidden
+                ></div>
+              </div>
+              <button
+                id="combat-collapseAllToggle"
+                type="button"
+                class="icon-toggle"
+                title="Collapse all"
+                aria-label="Collapse all"
+              ></button>
+              <button
+                id="combat-filterModeToggle"
+                type="button"
+                class="icon-toggle labeled"
+                title="Filters: matching all (AND)"
+                aria-label="Filters: matching all (AND) - click to match any (OR)"
+              ></button>
+            </div>
+            <div class="level-filter">
+              <span>Level:</span>
+              <span class="range-number-pair">
+                <input
+                  id="combat-levelMinNumber"
+                  class="range-number-input"
+                  type="number"
+                  min="1"
+                  max="50"
+                  step="1"
+                  value="1"
+                  data-level-bound="min"
+                  aria-label="Minimum item level"
+                  title="Scroll to adjust"
+                />
+                <span aria-hidden="true">–</span>
+                <input
+                  id="combat-levelMaxNumber"
+                  class="range-number-input"
+                  type="number"
+                  min="1"
+                  max="50"
+                  step="1"
+                  value="50"
+                  data-level-bound="max"
+                  aria-label="Maximum item level"
+                  title="Scroll to adjust"
+                />
+              </span>
+              <div class="level-range">
+                <span class="level-range-track" aria-hidden="true"></span>
+                <span
+                  id="combat-levelRangeFill"
+                  class="level-range-fill"
+                  aria-hidden="true"
+                ></span>
+                <input
+                  id="combat-levelMin"
+                  class="level-range-input"
+                  type="range"
+                  min="1"
+                  max="50"
+                  value="1"
+                  data-level-bound="min"
+                  aria-label="Minimum item level"
+                />
+                <input
+                  id="combat-levelMax"
+                  class="level-range-input"
+                  type="range"
+                  min="1"
+                  max="50"
+                  value="50"
+                  data-level-bound="max"
+                  aria-label="Maximum item level"
+                />
+              </div>
+              <button
+                id="combat-levelReset"
+                type="button"
+                class="level-reset"
+                title="Reset level filter"
+                aria-label="Reset level filter"
+                data-icon="reset"
+                disabled
+              ></button>
+            </div>
+          </div>
+          <div class="search-row search-row-count">
+            <div class="count">
+              <b id="combat-visibleCount">0</b> <span>items</span>
+            </div>
+          </div>
+        </div>
+        <div id="combat-equipmentList" class="browse-list"></div>
+      </aside>
+      <section id="combat-detail" class="detail">
+        <div id="combat-itemDetail"></div></section>
+    </main>
+  </div>
+</div>
+<div id="combat-searchHelpModal" class="modal-overlay">
+  <div
+    class="modal-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="combat-searchHelpTitle"
+  >
+    <div class="modal-head">
+      <h2 id="combat-searchHelpTitle">Search filters</h2>
+      <button
+        id="combat-searchHelpClose"
+        type="button"
+        class="modal-close"
+        aria-label="Close"
+      >
+        ×
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>
+        Plain text matches by <b>name</b> only. To refine your search you can
+        add filter chips.
+      </p>
+      <h3>Building a filter</h3>
+      <ol>
+        <li>
+          Start by typing the name of an available filter from the list below.
+          You can press
+          <b>Tab</b> to auto-complete it early.
+        </li>
+        <li>Type the value, e.g. <code>haste</code>.</li>
+        <li>Press <b>Tab</b> to complete the filter chip.</li>
+      </ol>
+      <p>
+        You can also type a whole filter at once, e.g. <code>stat:haste</code>,
+        then press Tab.
+      </p>
+      <h3>Slots</h3>
+      <p>
+        Choosing a slot in the equipment grid adds its
+        <code>slot:</code> filter, and adding one selects the slot. Choose the
+        selected slot again, or remove the chip, to clear it. There is one slot
+        filter at a time.
+      </p>
+      <h3>Class</h3>
+      <p>
+        Loading a saved set, or changing its class, sets the
+        <code>class:</code> filter to that class, so the list shows what it can
+        use. Remove the chip to see everything; the set keeps its class, and a
+        warning beside it says the list can show equipment it can't use.
+      </p>
+      <h3>Combining filters</h3>
+      <p>
+        Add as many filters as you like, including repeated filters of the same
+        kind. The
+        <b>All / Any</b> toggle next to the list controls whether every filter
+        must match or any one does.
+      </p>
+      <h3>Removing a filter</h3>
+      <p>
+        Press <b>Backspace</b> in an empty search box to remove the last filter,
+        or click the × on any chip.
+      </p>
+      <h3>Available filters</h3>
+      <ul id="combat-searchHelpScopes"></ul>
+    </div>
+  </div>
+</div>
+<div id="combat-changelogModal" class="modal-overlay">
+  <div
+    class="modal-panel changelog-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="combat-changelogTitle"
+  >
+    <div class="modal-head">
+      <h2 id="combat-changelogTitle">Change Log</h2>
+      <button
+        id="combat-changelogClose"
+        type="button"
+        class="modal-close"
+        aria-label="Close"
+      >
+        ×
+      </button>
+    </div>
+    <div id="combat-changelogContent" class="modal-body"></div>
+  </div>
+</div>
+<div id="combat-aboutModal" class="modal-overlay">
+  <div
+    class="modal-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="combat-aboutTitle"
+  >
+    <div class="modal-head">
+      <h2 id="combat-aboutTitle">About</h2>
+      <button
+        id="combat-aboutClose"
+        type="button"
+        class="modal-close"
+        aria-label="Close"
+      >
+        ×
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>
+        Plan an equipment loadout, compare item stats, and see which set bonuses
+        it unlocks. Items show their base stats; crafted material and quality
+        variants are not included yet.
+      </p>
+      <button
+        type="button"
+        class="icon-license-link"
+        data-help-toggle="iconLicense"
+      >
+        Icon licensing
+      </button>
+      <div
+        class="help-overlay help-overlay--legal"
+        data-help-panel="iconLicense"
+        data-icon-license-content
+      ></div>
+      <button
+        type="button"
+        class="icon-license-link"
+        data-help-toggle="gameArtwork"
+      >
+        Game artwork
+      </button>
+      <div
+        class="help-overlay help-overlay--legal"
+        data-help-panel="gameArtwork"
+      >
+        <p>
+          Most artwork in this app is taken from <i>Embers Adrift</i> and is the
+          copyrighted property of its developer,
+          <a
+            href="https://www.stormhavenstudios.com/#/"
+            target="_blank"
+            rel="noopener"
+            >Stormhaven Studios</a
+          >. It's used here for identification and reference only.
+        </p>
+        <p>
+          This is an unofficial, fan-made tool. It isn't made by, affiliated
+          with, or endorsed by Stormhaven Studios - see the
+          <a
+            href="https://www.embersadrift.com/Team"
+            target="_blank"
+            rel="noopener"
+            >official Embers Adrift team page</a
+          >
+          for the real thing.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="sb-frame">
+    <div class="sb-layout">
+      <aside class="sb-panel sb-goals" aria-label="Build goals">
+        <div
+          id="sb-pane-loot"
+          class="sb-work-pane sb-loot"
+          role="tabpanel"
+          aria-labelledby="sb-tab-loot"
+        ></div>
+        <div
+          id="sb-pane-search"
+          class="sb-work-pane sb-search"
+          role="tabpanel"
+          aria-labelledby="sb-tab-search"
+          hidden
+        >
+          <div id="combat-setOptimizer" class="sb-goals-root"></div>
+        </div>
+        <div
+          id="sb-pane-simulator"
+          class="sb-work-pane sb-simulation"
+          role="tabpanel"
+          aria-labelledby="sb-tab-simulator"
+          hidden
+        >
+          <div id="combat-simulatorControls" class="sb-goals-root"></div>
+        </div>
+      </aside>
+      <section class="sb-panel sb-center" aria-label="Results">
+        <div class="sb-center-loot"></div>
+        <p class="wip-banner" data-wip-banner="search" hidden>
+          This tool is a huge WIP. It mostly functions, but still needs a lot of
+          work and may change wildly. Don't get used to it.
+        </p>
+        <p class="wip-banner" data-wip-banner="simulator" hidden>
+          You found it! This is not even remotely ready yet, but poke around I
+          guess.
+        </p>
+        <div id="combat-setOutput" class="sb-output" hidden></div>
+        <div
+          id="combat-simulatorOutput"
+          class="sb-output sb-center-simulator"
+          hidden
+        ></div>
+      </section>
+    </div>
+  </div>
+</section>
+
+        </main>
+        <aside class="combat-tools almanac-characters" aria-label="Characters">
+  <div id="charactersPanel" class="characters-panel">
+    <div class="characters-body">
+      <div class="sb-equipment">
+        <div class="characters-empty" data-characters-empty hidden>
+          <p>Characters keep your gear, class, level and ability bars.</p>
+          <button type="button" class="primary-button" data-character-new>
+            New character
+          </button>
+        </div>
+        <div class="character-content" data-character-content>
+          <div class="set-bar character-bar">
+            <div class="search-box set-box">
+              <input
+                id="characterName"
+                class="search-input"
+                type="text"
+                placeholder="Character name…"
+                autocomplete="off"
+                maxlength="40"
+                aria-label="Character name"
+                role="combobox"
+                aria-autocomplete="none"
+                aria-controls="characterMenu"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+              /><button
+                type="button"
+                class="search-combo-toggle"
+                data-menu-toggle="characterMenu"
+                aria-label="Browse saved characters"
+                tabindex="-1"
+                data-icon="combo-toggle"
+              ></button>
+              <div
+                id="characterMenu"
+                class="combo-menu"
+                role="listbox"
+                aria-label="Characters"
+                hidden
+              ></div>
+            </div>
+            <div class="set-actions">
+              <button
+                type="button"
+                class="secondary-button action-button"
+                data-character-new
+                title="New character"
+                aria-label="New character"
+                data-shell-icon="character-new"
+              ></button>
+              <button
+                type="button"
+                class="secondary-button action-button"
+                data-character-delete
+                title="Delete character"
+                aria-label="Delete character"
+                data-icon="clear"
+              ></button>
+            </div>
+          </div>
+          <div class="loadout-rules">
+            <label class="loadout-rule-control"
+              >Level
+              <input
+                id="combat-buildLevel"
+                class="level-input"
+                type="number"
+                min="1"
+                max="50"
+                value="50"
+                aria-label="Character level"
+              />
+            </label>
+            <span class="class-select">
+              <select id="combat-setClass" aria-label="Class"></select>
+              <span
+                id="combat-setClassWarning"
+                class="class-warning"
+                data-icon="warning"
+                hidden
+              ></span>
+            </span>
+          </div>
+          <div class="set-bar build-bar">
+            <div class="search-box set-box">
+              <input
+                id="buildName"
+                class="search-input"
+                type="text"
+                placeholder="Build name…"
+                autocomplete="off"
+                maxlength="40"
+                aria-label="Build name"
+                role="combobox"
+                aria-autocomplete="none"
+                aria-controls="buildMenu"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+              /><button
+                type="button"
+                class="search-combo-toggle"
+                data-menu-toggle="buildMenu"
+                aria-label="Browse this character's builds"
+                tabindex="-1"
+                data-icon="combo-toggle"
+              ></button>
+              <div
+                id="buildMenu"
+                class="combo-menu"
+                role="listbox"
+                aria-label="Builds"
+                hidden
+              ></div>
+            </div>
+            <div class="set-actions">
+              <button
+                type="button"
+                class="secondary-button action-button"
+                data-build-new
+                title="New build"
+                aria-label="New build"
+                data-shell-icon="build-new"
+              ></button>
+              <button
+                type="button"
+                class="secondary-button action-button"
+                data-build-duplicate
+                title="Duplicate build"
+                aria-label="Duplicate build"
+                data-icon="copy"
+              ></button>
+              <button
+                type="button"
+                id="combat-setShare"
+                class="secondary-button action-button"
+                title="Share build"
+                aria-label="Share build"
+                data-icon="share-build"
+              ></button>
+              <button
+                type="button"
+                class="secondary-button action-button"
+                data-build-delete
+                title="Delete build"
+                aria-label="Delete build"
+                data-icon="clear"
+              ></button>
+            </div>
+          </div>
+          <div class="build-empty" data-build-empty hidden>
+            <p>This character has no builds.</p>
+            <button type="button" class="primary-button" data-build-new>
+              New build
+            </button>
+          </div>
+          <div class="build-content" data-build-content>
+            <div id="combat-abilityLoadout" class="ability-loadout"></div>
+            <div class="build-panels">
+              <div id="combat-loadout"></div>
+              <div id="combat-buildSummary"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Combat's set bar, which Characters replaces. Its controller still
+             holds these, so they stay in the page, out of sight. -->
+        <div hidden>
+          <input id="combat-setName" type="text" tabindex="-1" />
+          <button
+            type="button"
+            id="combat-setComboToggle"
+            tabindex="-1"
+          ></button>
+          <div id="combat-setComboMenu"></div>
+          <button type="button" id="combat-setSave" tabindex="-1"></button>
+          <button type="button" id="combat-setDuplicate" tabindex="-1"></button>
+          <button
+            type="button"
+            id="combat-setDelete"
+            data-delete-set
+            tabindex="-1"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    type="button"
+    class="characters-tab"
+    aria-controls="charactersPanel"
+    aria-expanded="false"
+    title="Show characters"
+  >
+    <span
+      class="characters-tab-icon"
+      data-shell-icon="characters"
+      aria-hidden="true"
+    ></span>
+    <span class="characters-tab-label">Characters</span>
+  </button>
+  <!-- Fixed overlays stay outside .characters-body: its slide-in transform
+       would make them position against the panel instead of the window. -->
+  <div id="abilityTooltip" class="ability-tooltip" role="tooltip" hidden></div>
+  <div
+    id="abilityPicker"
+    class="ability-popover"
+    role="dialog"
+    aria-label="Choose ability"
+    hidden
+  ></div>
+</aside>
+
+      </div>
+    </div>
+    <div class="almanac-dialogs">
+      <div class="modal-overlay almanac-changelog">
+        <div
+          class="modal-panel changelog-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="almanacChangelogTitle"
+        >
+          <div class="modal-head">
+            <h2 id="almanacChangelogTitle">Change Log</h2>
+            <button
+              type="button"
+              data-close-changelog
+              class="modal-close"
+              aria-label="Close"
+            >
+              ×
+            </button>
+          </div>
+          <div id="almanacChangelogContent" class="modal-body"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
